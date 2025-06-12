@@ -27,4 +27,5 @@ public class FoodEntity {
 	private String content;
 	private String price;
 	private double score;
+	private String poster;
 }

@@ -7,6 +7,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.sist.web.entity.FoodEntity;
 import com.sist.web.projection.FoodListProjection;
 import com.sist.web.service.FoodService;
 
@@ -43,5 +44,15 @@ public class FoodController {
 		model.addAttribute("endPage", endPage);
 		
 		return "index";
+	}
+	
+	@GetMapping("/detail")
+	public String foodDetailPage(@RequestParam(name = "fno") Integer fno, Model model) {
+		if (fno == null) {
+			return "redirect:/";
+		}
+		FoodEntity detail = fService.getFoodDetail(fno);
+		model.addAttribute("vo", detail);
+		return "detail";
 	}
 }
